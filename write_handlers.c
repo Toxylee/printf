@@ -11,8 +11,8 @@
  *Return: Number of chars printed.
  */
 int handle_write_char(char c, char buffer[],
-int flags, int width, int precision, int size)
-{ 
+		int flags, int width, int precision, int size)
+{
 	/* char is stored at left and paddind at buffer's right */
 	int i = 0;
 	char padd = ' ';
@@ -32,7 +32,6 @@ int flags, int width, int precision, int size)
 			return (write(1, &buffer[0], 1) +
 					write(1, &buffer[BUFF_SIZE - i - 1], width - 1));
 		else
-		
 			return (write(1, &buffer[BUFF_SIZE - i - 1], width - 1) +
 					write(1, &buffer[0], 1));
 	}
@@ -84,6 +83,7 @@ int write_num(int ind, char buffer[], int flags, int width, int prec,
 int length, char padd, char extra_c)
 {
 	int i, padd_start = 1;
+
 	if (prec == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0' && width == 0)
 		return (0); /* printf(".0d", 0)  no char is printed */
 	if (prec == 0 && ind == BUFF_SIZE - 2 && buffer[ind] == '0')
