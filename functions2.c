@@ -25,14 +25,15 @@ int print_pointer(va_list types, char buffer[],
 	if (addrs == NULL)
 		return (write(1, "(nil)", 5));
 	buffer[BUFF_SIZE - 1] = '\0';
+
 	UNUSED(precision);
 
 	num_addrs = (unsigned long)addrs;
+
 	while (num_addrs > 0)
 	{
 		buffer[ind--] = map_to[num_addrs % 16];
 		num_addrs /= 16;
-
 		length++;
 	}
 	if ((flags & F_ZERO) && !(flags & F_MINUS))
@@ -53,7 +54,8 @@ int print_pointer(va_list types, char buffer[],
  *@buffer: Buffer array to handle print
  *@flags:  Calculates active flags
  *@width: get width
- *@precision: Precision specification*@size: Size specifier
+ *@precision: Precision specification
+ *@size: Size specifier
  *Return: Number of chars printed
  */
 int print_non_printable(va_list types, char buffer[],
@@ -107,6 +109,7 @@ int print_reverse(va_list types, char buffer[],
 	if (str == NULL)
 	{
 		UNUSED(precision);
+
 		str = ")Null(";
 	}
 	for (i = 0; str[i]; i++)
@@ -158,6 +161,7 @@ int print_rot13string(va_list types, char buffer[],
 			if (in[j] == str[i])
 			{
 				x = out[j];
+
 				write(1, &x, 1);
 				count++;
 				break;
@@ -166,6 +170,7 @@ int print_rot13string(va_list types, char buffer[],
 		if (!in[j])
 		{
 			x = str[i];
+
 			write(1, &x, 1);
 			count++;
 		}
